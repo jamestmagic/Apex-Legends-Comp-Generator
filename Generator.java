@@ -10,8 +10,10 @@ import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
 import java.util.ArrayList;
 import javax.sound.sampled.AudioSystem;
+import java.awt.Font;
 import javax.sound.sampled.Clip;
 import java.net.URL;
+import java.awt.event.*;
 
 public class Generator extends JPanel implements ActionListener
 {
@@ -23,6 +25,7 @@ public class Generator extends JPanel implements ActionListener
 	private JButton generateButton;
 	private JButton standButton;
 	private JButton newgameButton;
+	private JButton tempButton;
 	private int totalPlayerValue;
 	private int totalDealerValue;
 	private int points;
@@ -43,9 +46,11 @@ public class Generator extends JPanel implements ActionListener
 	private boolean tie;
 	private boolean dealerBust;
 	private boolean playerBust;
+	Font apexFont;
 
 	public Generator()
 	{
+		this.setLayout(null);
 		roster = new ArrayList<Legend>();
 		roster.add(new Legend(0, "Bloodhound", "recon"));
 		roster.add(new Legend(1, "Gibraltar", "defensive"));
@@ -98,10 +103,30 @@ public class Generator extends JPanel implements ActionListener
 		roster.remove(0);
 		roster.remove(0);
 
+		apexFont = new Font("Apex", Font.PLAIN, 50);
+
+
 		generateButton = new JButton("GENERATE NEW COMP");
-		generateButton.setBounds(100,100,100,100);
+		generateButton.setFont(apexFont);
+		generateButton.setForeground(Color.lightGray);
+		generateButton.setBackground(Color.darkGray);
+		generateButton.setBounds(500,600,500,100);
 		generateButton.addActionListener(this);
+		generateButton.addMouseListener(new MouseAdapter() {
+         Color fcolor = generateButton.getForeground();
+				 Color bcolor = generateButton.getBackground();
+         public void mouseEntered(MouseEvent me) {
+            fcolor = generateButton.getForeground();
+            generateButton.setBackground(new Color(123,10,33)); // change the color to green when mouse over a button
+         }
+         public void mouseExited(MouseEvent me) {
+            generateButton.setBackground(bcolor);
+         }
+		});
+		generateButton.setLayout(null);
 		this.add(generateButton);
+
+
 
 		/*standButton = new JButton("Stand");
 		standButton.setBounds(230,50,200,30);
@@ -127,19 +152,20 @@ public class Generator extends JPanel implements ActionListener
     {
         super.paintComponent(g);
 
+
         g.setColor(Color.gray);
         g.fillRect(0,0,1920,1080);
 
-		x = 150;
-		y = 200;
-		x2 = 20;
-		y2 = 350;
-		totalPlayerValue = findPlayerValue();
-		for(int i = 0;i<playerLegends.size();i++)
-		{
-			playerLegends.get(i).drawMe(g,x,y);
-			x += 500;
-		}
+				x = 150;
+				y = 200;
+				x2 = 20;
+				y2 = 350;
+				totalPlayerValue = findPlayerValue();
+				for(int i = 0;i<playerLegends.size();i++)
+				{
+					playerLegends.get(i).drawMe(g,x,y);
+					x += 500;
+				}
 
 /*
 		if(seeDealer == false)

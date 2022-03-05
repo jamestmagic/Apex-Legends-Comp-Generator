@@ -202,7 +202,7 @@ public class Legend
 		*/
 		//type
     g.drawImage(legendImage,x,y,null);
-		g.drawImage(typeImage,x,y-50,null);
+		g.drawImage(typeImage,x,y-75,null);
 
 		//set up font and color
 		Font font = new Font("Apex", Font.PLAIN, 50);
@@ -211,7 +211,7 @@ public class Legend
 
 
 		//draw name of card
-		g.drawString(name,x+60,y);
+		g.drawString(name,x+60,y-25);
 
 	}
 
