@@ -32,6 +32,9 @@ public class Generator extends JPanel implements ActionListener
 	private JToggleButton reconButton;
 	private JToggleButton supportButton;
 	private JToggleButton anyButton;
+	private JComboBox<String> typeSelection1;
+	private JComboBox<String> typeSelection2;
+	private JComboBox<String> typeSelection3;
 	private int totalPlayerValue;
 	private int totalDealerValue;
 	private int points;
@@ -58,28 +61,28 @@ public class Generator extends JPanel implements ActionListener
 	{
 		this.setLayout(null);
 		roster = new ArrayList<Legend>();
-		roster.add(new Legend(0, "Bloodhound", "recon"));
-		roster.add(new Legend(1, "Gibraltar", "defensive"));
-		roster.add(new Legend(2, "Lifeline", "support"));
-		roster.add(new Legend(3, "Pathfinder", "recon"));
-		roster.add(new Legend(4, "Wraith", "offensive"));
-		roster.add(new Legend(5, "Bangalore", "offensive"));
-		roster.add(new Legend(6, "Caustic", "defensive"));
-		roster.add(new Legend(7, "Mirage", "offensive"));
-		roster.add(new Legend(8, "Octane", "offensive"));
-		roster.add(new Legend(9, "Wattson", "defensive"));
-		roster.add(new Legend(10, "Crypto", "recon"));
-		roster.add(new Legend(11, "Revenant", "offensive"));
-		roster.add(new Legend(12, "Loba", "support"));
-		roster.add(new Legend(13, "Rampart", "defensive"));
-		roster.add(new Legend(14, "Horizon", "offensive"));
-		roster.add(new Legend(15, "Fuse", "offensive"));
-		roster.add(new Legend(16, "Valkyrie", "recon"));
-		roster.add(new Legend(17, "Seer", "recon"));
-		roster.add(new Legend(18, "Ash", "offensive"));
-		roster.add(new Legend(19, "Mad Maggie", "offensive"));
+		roster.add(new Legend(0, "Bloodhound", "Recon"));
+		roster.add(new Legend(1, "Gibraltar", "Defensive"));
+		roster.add(new Legend(2, "Lifeline", "Support"));
+		roster.add(new Legend(3, "Pathfinder", "Recon"));
+		roster.add(new Legend(4, "Wraith", "Offensive"));
+		roster.add(new Legend(5, "Bangalore", "Offensive"));
+		roster.add(new Legend(6, "Caustic", "Defensive"));
+		roster.add(new Legend(7, "Mirage", "Offensive"));
+		roster.add(new Legend(8, "Octane", "Offensive"));
+		roster.add(new Legend(9, "Wattson", "Defensive"));
+		roster.add(new Legend(10, "Crypto", "Recon"));
+		roster.add(new Legend(11, "Revenant", "Offensive"));
+		roster.add(new Legend(12, "Loba", "Support"));
+		roster.add(new Legend(13, "Rampart", "Defensive"));
+		roster.add(new Legend(14, "Horizon", "Offensive"));
+		roster.add(new Legend(15, "Fuse", "Offensive"));
+		roster.add(new Legend(16, "Valkyrie", "Recon"));
+		roster.add(new Legend(17, "Seer", "Recon"));
+		roster.add(new Legend(18, "Ash", "Offensive"));
+		roster.add(new Legend(19, "Mad Maggie", "Offensive"));
 
-		shuffle();
+
 
 		x = 20;
 		y = 150;
@@ -97,17 +100,7 @@ public class Generator extends JPanel implements ActionListener
 		dealerBust = false;
 		playerBust = false;
 
-		playerLegends = new ArrayList<Legend>();
-		playerLegends.add(roster.get(0));
-		playerLegends.add(roster.get(1));
-		playerLegends.add(roster.get(2));
-		//roster.remove(0);
-		//roster.remove(0);
-		dealerLegends = new ArrayList<Legend>();
-		dealerLegends.add(roster.get(0));
-		dealerLegends.add(roster.get(1));
-		roster.remove(0);
-		roster.remove(0);
+
 
 		apexFont = new Font("Apex", Font.PLAIN, 50);
 
@@ -131,7 +124,7 @@ public class Generator extends JPanel implements ActionListener
 		});
 		generateButton.setLayout(null);
 		this.add(generateButton);
-
+		/*
 		offenseButton = new JToggleButton("Offense");
 		offenseButton.setBounds(50,50,100,50);
 		offenseButton.addActionListener(this);
@@ -142,9 +135,27 @@ public class Generator extends JPanel implements ActionListener
 		supportButton = new JToggleButton("Support");
 		reconButton = new JToggleButton("Recon");
 		anyButton = new JToggleButton("Any Class");
+   */
 
+		String types[] = {"Any", "Recon", "Offensive", "Defensive", "Support"};
 
+		typeSelection1 = new JComboBox<>(types);
+		typeSelection1.setBounds(225, 50, 100, 25);
+		typeSelection1.addActionListener(this);
+		this.add(typeSelection1);
+		typeSelection1.setVisible(true);
 
+		typeSelection2 = new JComboBox<>(types);
+		typeSelection2.setBounds(725, 50, 100, 25);
+		typeSelection2.addActionListener(this);
+		this.add(typeSelection2);
+		typeSelection2.setVisible(true);
+
+		typeSelection3 = new JComboBox<>(types);
+		typeSelection3.setBounds(1225, 50, 100, 25);
+		typeSelection3.addActionListener(this);
+		this.add(typeSelection3);
+		typeSelection3.setVisible(true);
 		/*standButton = new JButton("Stand");
 		standButton.setBounds(230,50,200,30);
 		standButton.addActionListener(this);
@@ -154,7 +165,20 @@ public class Generator extends JPanel implements ActionListener
 		newgameButton.setBounds(250,300,200,30);
 		newgameButton.addActionListener(this);
 		*/
-
+		shuffle();
+		/*
+		playerLegends = new ArrayList<Legend>();
+		playerLegends.add(roster.get(0));
+		playerLegends.add(roster.get(1));
+		playerLegends.add(roster.get(2));
+		//roster.remove(0);
+		//roster.remove(0);
+		dealerLegends = new ArrayList<Legend>();
+		dealerLegends.add(roster.get(0));
+		dealerLegends.add(roster.get(1));
+		roster.remove(0);
+		roster.remove(0);
+		*/
 		this.setFocusable(true);
 
 	}
@@ -237,10 +261,51 @@ public class Generator extends JPanel implements ActionListener
 				roster.set(i,roster.get(j));
 				roster.set(j,temp);
 			}
+
 			playerLegends = new ArrayList<Legend>();
-			playerLegends.add(roster.get(0));
-			playerLegends.add(roster.get(1));
-			playerLegends.add(roster.get(2));
+			//First Legend
+			for(int i = 0;i<roster.size();i++)
+			{
+				if(typeSelection1.getItemAt(typeSelection1.getSelectedIndex()).equals("Any")){
+					playerLegends.add(roster.get(i));
+					break;
+				}
+				if(roster.get(i).getType().equals(typeSelection1.getItemAt(typeSelection1.getSelectedIndex()))){
+					playerLegends.add(roster.get(i));
+					break;
+				}
+			}
+			//Second Legend
+
+			for(int i = 0;i<roster.size();i++)
+			{
+				if(typeSelection2.getItemAt(typeSelection2.getSelectedIndex()).equals("Any") &&
+				playerLegends.get(0).getName() != roster.get(i).getName()){
+					playerLegends.add(roster.get(i));
+					break;
+				}
+				if(roster.get(i).getType().equals(typeSelection2.getItemAt(typeSelection2.getSelectedIndex())) &&
+				playerLegends.get(0).getName() != roster.get(i).getName()){
+					playerLegends.add(roster.get(i));
+					break;
+				}
+			}
+			//Third Legend
+			for(int i = 0;i<roster.size();i++)
+			{
+				if(typeSelection3.getItemAt(typeSelection3.getSelectedIndex()).equals("Any") &&
+				playerLegends.get(1).getName() != roster.get(i).getName() &&
+				playerLegends.get(0).getName() != roster.get(i).getName()){
+					playerLegends.add(roster.get(i));
+					break;
+				}
+				if(roster.get(i).getType().equals(typeSelection3.getItemAt(typeSelection3.getSelectedIndex())) &&
+				playerLegends.get(1).getName() != roster.get(i).getName() &&
+				playerLegends.get(0).getName() != roster.get(i).getName()){
+					playerLegends.add(roster.get(i));
+					break;
+				}
+			}
     }
 
 	public int findPlayerValue()

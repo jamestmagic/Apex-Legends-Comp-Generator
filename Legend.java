@@ -20,28 +20,28 @@ public class Legend
 		this.name = name;
 		this.type = type;
 
-		if(type.equals("support"))
+		if(type.equals("Support"))
 		{
 			try
 			{
 				typeImage = ImageIO.read(new File("support.png"));
 			}catch(IOException e) {}
 		}
-		if(type.equals("offensive"))
+		if(type.equals("Offensive"))
 		{
 			try
 			{
 				typeImage = ImageIO.read(new File("offensive.png"));
 			}catch(IOException e) {}
 		}
-		if(type.equals("defensive"))
+		if(type.equals("Defensive"))
 		{
 			try
 			{
 				typeImage = ImageIO.read(new File("defensive.png"));
 			}catch(IOException e) {}
 		}
-		if(type.equals("recon"))
+		if(type.equals("Recon"))
 		{
 			try
 			{
@@ -218,5 +218,13 @@ public class Legend
 	public int getValue()
 	{
 		return value;
+	}
+
+	public String getType(){
+		return type;
+	}
+
+	public String getName(){
+		return name;
 	}
 }
