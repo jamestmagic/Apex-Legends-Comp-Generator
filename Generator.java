@@ -16,7 +16,7 @@ import java.net.URL;
 import java.awt.event.*;
 import javax.swing.*;
 
-public class Generator extends JPanel implements ActionListener
+public class Generator extends JPanel implements ActionListener, KeyListener
 {
 	private ArrayList<Legend> roster;
 	private ArrayList<Legend> playerLegends;
@@ -24,38 +24,17 @@ public class Generator extends JPanel implements ActionListener
 	//private Win[] confetti;
 	private int userIndex;
 	private JButton generateButton;
-	private JButton standButton;
-	private JButton newgameButton;
-	private JButton tempButton;
-	private JToggleButton offenseButton;
-	private JToggleButton defenseButton;
-	private JToggleButton reconButton;
-	private JToggleButton supportButton;
-	private JToggleButton anyButton;
 	private JComboBox<String> typeSelection1;
 	private JComboBox<String> typeSelection2;
 	private JComboBox<String> typeSelection3;
-	private int totalPlayerValue;
-	private int totalDealerValue;
-	private int points;
-	private boolean finish;
-	private int winnings;
-	private int playerScore;
-	private int dealerScore;
+
 	private Color white;
-	private int x;
-	private int y;
-	private int x2;
-	private int y2;
-	private boolean seeDealer;
-	private boolean over21;
-	private boolean equal21;
-	private boolean win;
-	private boolean lose;
-	private boolean tie;
-	private boolean dealerBust;
-	private boolean playerBust;
 	Font apexFont;
+
+	private int x;
+	private int x2;
+	private int y;
+	private int y2;
 
 	public Generator()
 	{
@@ -84,21 +63,7 @@ public class Generator extends JPanel implements ActionListener
 
 
 
-		x = 20;
-		y = 150;
-		x2 = 20;
-		y2 = 400;
 
-
-
-		seeDealer = false;
-		over21 = false;
-		equal21 = false;
-		win = false;
-		lose = false;
-		tie = false;
-		dealerBust = false;
-		playerBust = false;
 
 
 
@@ -124,18 +89,7 @@ public class Generator extends JPanel implements ActionListener
 		});
 		generateButton.setLayout(null);
 		this.add(generateButton);
-		/*
-		offenseButton = new JToggleButton("Offense");
-		offenseButton.setBounds(50,50,100,50);
-		offenseButton.addActionListener(this);
-		offenseButton.setLayout(null);
-		this.add(offenseButton);
 
-		defenseButton = new JToggleButton("Defense");
-		supportButton = new JToggleButton("Support");
-		reconButton = new JToggleButton("Recon");
-		anyButton = new JToggleButton("Any Class");
-   */
 
 		String types[] = {"Any", "Recon", "Offensive", "Defensive", "Support"};
 
@@ -156,30 +110,11 @@ public class Generator extends JPanel implements ActionListener
 		typeSelection3.addActionListener(this);
 		this.add(typeSelection3);
 		typeSelection3.setVisible(true);
-		/*standButton = new JButton("Stand");
-		standButton.setBounds(230,50,200,30);
-		standButton.addActionListener(this);
-		this.add(standButton);
 
-		newgameButton = new JButton("New Game");
-		newgameButton.setBounds(250,300,200,30);
-		newgameButton.addActionListener(this);
-		*/
 		shuffle();
-		/*
-		playerLegends = new ArrayList<Legend>();
-		playerLegends.add(roster.get(0));
-		playerLegends.add(roster.get(1));
-		playerLegends.add(roster.get(2));
-		//roster.remove(0);
-		//roster.remove(0);
-		dealerLegends = new ArrayList<Legend>();
-		dealerLegends.add(roster.get(0));
-		dealerLegends.add(roster.get(1));
-		roster.remove(0);
-		roster.remove(0);
-		*/
+
 		this.setFocusable(true);
+		addKeyListener(this);
 
 	}
 
@@ -201,7 +136,7 @@ public class Generator extends JPanel implements ActionListener
 				y = 200;
 				x2 = 20;
 				y2 = 350;
-				totalPlayerValue = findPlayerValue();
+
 				for(int i = 0;i<playerLegends.size();i++)
 				{
 					playerLegends.get(i).drawMe(g,x,y);
@@ -308,265 +243,25 @@ public class Generator extends JPanel implements ActionListener
 			}
     }
 
-	public int findPlayerValue()
-    {
-    	int total = 0;
-    	for(int i = 0; i<playerLegends.size();i++)
-    	{
-    		total = total + playerLegends.get(i).getValue();
-    	}
-    	return total;
-    }
 
-   	public int findDealerValue()
-    {
-    	int total = 0;
-    	for(int i = 0; i<dealerLegends.size();i++)
-    	{
-    		total = total + dealerLegends.get(i).getValue();
-    	}
-    	return total;
-    }
 
-	public void choice()
-	{
-		totalPlayerValue = findPlayerValue();
-		if(roster.get(0).getValue() + totalPlayerValue > 21 && totalPlayerValue <= 21 && equal21 == false)
-		{
-			standsound();
-		}
 
-		if(roster.get(0).getValue() + totalPlayerValue <= 21 && totalPlayerValue <= 21)
-		{
-			hitsound();
-		}
-	}
-
-	public void actionPerformed(ActionEvent e)
-    {
-
+	public void actionPerformed(ActionEvent e){
 		if(e.getSource() == generateButton)
 		{
 			shuffle();
 		}
-
-		if(e.getSource() == standButton || equal21 == true)
-		{
-			seeDealer = true;
-			totalDealerValue = findDealerValue();
-			for(totalDealerValue = findDealerValue();totalDealerValue < 17;totalDealerValue=findDealerValue())
-			{
-				if(totalDealerValue < 17)
-				{
-					dealerLegends.add(roster.get(0));
-					roster.remove(0);
-
-				}
-			}
-			totalDealerValue = findDealerValue();
-			totalPlayerValue = findPlayerValue();
-			if(totalDealerValue >= 17 && totalDealerValue <=21 && totalPlayerValue >= 17 && totalPlayerValue <=21 && totalDealerValue > totalPlayerValue)
-			{
-				dealerScore++;
-				lose = true;
-				losesound();
-			}
-			if(totalDealerValue >= 17 && totalDealerValue <=21 && totalPlayerValue >= 17 && totalPlayerValue <=21 && totalDealerValue < totalPlayerValue)
-			{
-				playerScore++;
-				win = true;
-				winsound();
-			}
-			if(totalDealerValue >= 17 && totalDealerValue <=21 && totalPlayerValue > 21)
-			{
-				dealerScore++;
-				//lose = true;
-				playerBust = true;
-				losesound();
-			}
-			if(totalPlayerValue >= 17 && totalPlayerValue <=21 && totalDealerValue > 21)
-			{
-				playerScore++;
-				dealerBust = true;
-				winsound();
-			}
-			if(totalDealerValue >= 17 && totalDealerValue <=21 && totalPlayerValue < 17)
-			{
-				dealerScore++;
-				lose = true;
-				losesound();
-			}
-			if(totalDealerValue == totalPlayerValue)
-			{
-				tie = true;
-			}
-
-
-			removeAll();
-			this.add(newgameButton);
-
-		}
-		if(over21 == true)
-		{
-			dealerScore++;
-			removeAll();
-			this.add(newgameButton);
-			over21 = false;
-			//lose = true;
-			playerBust = true;
-			losesound();
-		}
-		if(e.getSource() == newgameButton)
-		{
-			for(int i = 0; i<playerLegends.size(); i++)
-			{
-				roster.add(playerLegends.get(i));
-			}
-			for(int i = 0; i<dealerLegends.size(); i++)
-			{
-				roster.add(dealerLegends.get(i));
-			}
-
-			playerLegends.clear();
-			dealerLegends.clear();
-			shuffle();
-			removeAll();
-
-			this.add(standButton);
-			this.add(generateButton);
-			seeDealer = false;
-			over21 = false;
-			equal21 = false;
-			playerLegends.add(roster.get(0));
-			playerLegends.add(roster.get(1));
-			roster.remove(0);
-			roster.remove(0);
-			dealerLegends.add(roster.get(0));
-			dealerLegends.add(roster.get(1));
-			roster.remove(0);
-			roster.remove(0);
-			x = 20;
-			y = 150;
-			x2 = 20;
-			y2 = 400;
-			totalDealerValue = findDealerValue();
-			totalPlayerValue = findPlayerValue();
-
-			win = false;
-			lose = false;
-			tie = false;
-			dealerBust = false;
-			playerBust = false;
-
-			choice();
-		}
-
-
-
 		repaint();
 	}
 
-
-	public void winsound()
-	{
-		  try
-
-        {
-
-            URL url = this.getClass().getClassLoader().getResource("sounds/win.wav");
-
-
-            Clip clip = AudioSystem.getClip();
-
-            clip.open(AudioSystem.getAudioInputStream(url));
-
-            clip.start();
-
-        }
-
-        catch (Exception exc)
-
-        {
-
-            exc.printStackTrace(System.out);
-
-        }
+	public void keyPressed(KeyEvent e){
+		if( e.getKeyCode() == 32 ) //spacebar
+		{
+		 	shuffle();
+		}
+		repaint();
 	}
+	public void keyReleased(KeyEvent e){}
+	public void keyTyped(KeyEvent e){}
 
-	public void losesound()
-	{
-
-		  try
-
-        {
-
-            URL url = this.getClass().getClassLoader().getResource("sounds/lose.wav");
-
-
-            Clip clip = AudioSystem.getClip();
-
-            clip.open(AudioSystem.getAudioInputStream(url));
-
-            clip.start();
-
-        }
-
-        catch (Exception exc)
-
-        {
-
-            exc.printStackTrace(System.out);
-
-        }
-	}
-	public void hitsound()
-	{
-		  try
-
-        {
-
-            URL url = this.getClass().getClassLoader().getResource("sounds/hit.wav");
-
-
-            Clip clip = AudioSystem.getClip();
-
-            clip.open(AudioSystem.getAudioInputStream(url));
-
-            clip.start();
-
-        }
-
-        catch (Exception exc)
-
-        {
-
-            exc.printStackTrace(System.out);
-
-        }
-	}
-	public void standsound()
-	{
-		  try
-
-        {
-
-            URL url = this.getClass().getClassLoader().getResource("sounds/stand.wav");
-
-
-            Clip clip = AudioSystem.getClip();
-
-            clip.open(AudioSystem.getAudioInputStream(url));
-
-            clip.start();
-
-        }
-
-        catch (Exception exc)
-
-        {
-
-            exc.printStackTrace(System.out);
-
-        }
-	}
 }
