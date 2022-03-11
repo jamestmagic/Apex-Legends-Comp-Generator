@@ -81,7 +81,7 @@ public class Generator extends JPanel implements ActionListener, KeyListener
 				 Color bcolor = generateButton.getBackground();
          public void mouseEntered(MouseEvent me) {
             fcolor = generateButton.getForeground();
-            generateButton.setBackground(new Color(123,10,33)); // change the color to green when mouse over a button
+            generateButton.setBackground(new Color(123,10,33)); // change the color to red when mouse over a button
          }
          public void mouseExited(MouseEvent me) {
             generateButton.setBackground(bcolor);
