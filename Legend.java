@@ -24,28 +24,28 @@ public class Legend
 		{
 			try
 			{
-				typeImage = ImageIO.read(new File("support.png"));
+				typeImage = ImageIO.read(new File("Types/support.png"));
 			}catch(IOException e) {}
 		}
 		if(type.equals("Offensive"))
 		{
 			try
 			{
-				typeImage = ImageIO.read(new File("offensive.png"));
+				typeImage = ImageIO.read(new File("Types/offensive.png"));
 			}catch(IOException e) {}
 		}
 		if(type.equals("Defensive"))
 		{
 			try
 			{
-				typeImage = ImageIO.read(new File("defensive.png"));
+				typeImage = ImageIO.read(new File("Types/defensive.png"));
 			}catch(IOException e) {}
 		}
 		if(type.equals("Recon"))
 		{
 			try
 			{
-				typeImage = ImageIO.read(new File("recon.png"));
+				typeImage = ImageIO.read(new File("Types/recon.png"));
 			}catch(IOException e) {}
 		}
     //-------------------------------------------------------------------------

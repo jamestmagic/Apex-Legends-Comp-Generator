@@ -143,48 +143,7 @@ public class Generator extends JPanel implements ActionListener, KeyListener
 					x += 500;
 				}
 
-/*
-		if(seeDealer == false)
-		{
-			g.setColor(Color.white);
-			g.fillRect(100,y2,120,150);
-			g.setColor(Color.black);
-			g.drawRect(100,y2,120,150);
-			g.drawString("Dealer Value: " + dealerLegends.get(0).getValue() , 50,550);
-		}
-
-		g.setColor(Color.black);
-		g.drawString("Player Value: " + totalPlayerValue , 50,50);
-		if(seeDealer == true)
-		{
-			g.drawString("Dealer Value: " + findDealerValue() , 50,550);
-		}
-
-		g.drawString("Player Score: " + playerScore , 600,50);
-		g.drawString("Dealer Score: " + dealerScore , 600,550);
-
-
-		if(tie == true)
-		{
-			g.drawString("It's a tie!", 700,300);
-		}
-		if(lose == true)
-		{
-			g.drawString("You lost!", 700,300);
-		}
-		if(win == true)
-		{
-			g.drawString("You won!", 700,300);
-		}
-		if(dealerBust == true)
-		{
-			g.drawString("Dealer Bust!",700,300);
-		}
-		if(playerBust == true)
-		{
-			g.drawString("Player Bust!",700,300);
-		}
-		*/
+				g.drawString("Press and release SPACE for more randomized comp", 0, 0);
 	}
 
 	public void shuffle()
