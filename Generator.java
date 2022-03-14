@@ -1,3 +1,9 @@
+import java.awt.*;
+import java.awt.event.*;
+import java.util.*;
+import javax.swing.*;
+
+/*
 import java.awt.Graphics;
 import java.awt.Color;
 import java.util.ArrayList;
@@ -15,6 +21,7 @@ import javax.sound.sampled.Clip;
 import java.net.URL;
 import java.awt.event.*;
 import javax.swing.*;
+*/
 
 public class Generator extends JPanel implements ActionListener, KeyListener
 {
