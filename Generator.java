@@ -27,7 +27,6 @@ public class Generator extends JPanel implements ActionListener, KeyListener
 {
 	private ArrayList<Legend> roster;
 	private ArrayList<Legend> playerLegends;
-	//private ArrayList<Legend> dealerLegends;
 	private int userIndex;
 	private JButton generateButton;
 	private JComboBox<String> typeSelection1;
@@ -68,11 +67,8 @@ public class Generator extends JPanel implements ActionListener, KeyListener
 		roster.add(new Legend(18, "Ash", "Offensive"));
 		roster.add(new Legend(19, "Mad Maggie", "Offensive"));
 
-
-
 		apexFont = new Font("Apex", Font.PLAIN, 50);
 		robotoFont = new Font("Roboto", Font.PLAIN, 25);
-
 
 		generateButton = new JButton("GENERATE NEW COMP");
 		generateButton.setFont(apexFont);
@@ -138,7 +134,8 @@ public class Generator extends JPanel implements ActionListener, KeyListener
 
 				g.setFont(robotoFont);
 				g.setColor(Color.black);
-				g.drawString("Hold and release SPACE for more randomized comp", 450, 775);
+				g.drawString("Made by jamestmagic", 0, 25);
+				g.drawString("Hold and release SPACE for more randomized comp", 460, 775);
 
 
 				x = 150;
@@ -209,6 +206,11 @@ public class Generator extends JPanel implements ActionListener, KeyListener
 			}
     }
 
+		//saves comp in json file
+		public void saveComp(){
+
+		}
+
 
 
 
@@ -216,6 +218,8 @@ public class Generator extends JPanel implements ActionListener, KeyListener
 		if(e.getSource() == generateButton)
 		{
 			shuffle();
+			generateButton.setLayout(null);
+			this.add(generateButton);
 		}
 		repaint();
 	}
