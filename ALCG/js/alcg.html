@@ -1,0 +1,181 @@
+<!DOCTYPE html>
+<html lang="en" dir="ltr">
+  <head>
+    <meta charset="utf-8">
+    <title></title>
+  </head>
+  <style>
+    @font-face {
+  font-family: apexFont;
+  src: url("Teko-Regular.ttf")
+
+}
+@font-face {
+font-family: apexFontBold;
+src: url("Teko-Bold.ttf")
+
+}
+    .container {
+      height: 200px;
+      position: relative;
+      border: 3px solid green;
+    }
+
+    .vertical-center {
+      margin: 0;
+      position: absolute;
+      top: 50%;
+      -ms-transform: translateY(-50%);
+      transform: translateY(-50%);
+    }
+
+    .top-center {
+      margin: 0 auto !important;
+      width: 50%;
+      /* add wanted width */
+    }
+
+    #container {
+      text-align: center;
+    }
+    #button {
+      display:block;
+      margin:auto;
+    }
+    optgroup { font-size:40px; }
+
+    select {
+  border: 1px solid black;
+  margin-top: 50px;
+  margin-bottom: 0px;
+  margin-right: 80px;
+  margin-left: 80px;
+  background-color: rgb(42,42,42);
+  color: rgb(256,256,256);
+  font-size: 40px;
+  text-align: center;
+  font-family: apexFont;
+  letter-spacing: 5px;
+}
+button {
+  border-radius: 10px;
+border: 1px solid black;
+margin-top: 50px;
+margin-bottom: 0px;
+margin-right: 70px;
+margin-left: 70px;
+background-color: rgb(42,42,42);
+color: rgb(256,256,256);
+font-size: 50px;
+text-align: justify;
+font-family: apexFont;
+letter-spacing: 5px;
+padding-left: 13px
+}
+.button:hover {
+  background-color: rgb(160, 7, 9);
+  color: white;
+}
+option {
+  text-align: center;
+  letter-spacing: 5px;
+}
+.contactselect select
+{
+    outline: none;
+}
+
+.contactselect button
+{
+    outline: #ff0000;
+}
+
+::selection {
+  background: #000;
+  color: #ff0000;
+}
+img{
+  margin-top: 10px;
+  margin-bottom: 0px;
+  margin-right: 150px;
+  margin-left: 150px;
+}
+figure{
+  margin-top: 10px;
+  display: inline-block;
+  font-size:40px;
+  font-family:apexFontBold;
+}
+
+  </style>
+
+  <body style="background-color:rgb(80,80,80);">
+</body>
+  <body>
+    <div>
+      <div id="container">
+        <button id="generateButton" class="button" >Generate Composition</button>
+        <form>
+          <select id="typeList0">
+
+            <option> Any </option>
+            <option> Offensive </option>
+            <option> Defensive </option>
+            <option> Recon </option>
+            <option> Support </option>
+          </select>
+          <select id="typeList1" >
+            <option> Any </option>
+            <option> Offensive </option>
+            <option> Defensive </option>
+            <option> Recon </option>
+            <option> Support </option>
+          </select>
+          <select id="typeList2">
+            <option> Any </option>
+            <option> Offensive </option>
+            <option> Defensive </option>
+            <option> Recon </option>
+            <option> Support </option>
+          </select>
+
+          <p>
+            <input type="hidden" id="type0">
+
+            <input type="hidden" id="type1">
+
+            <input type="hidden" id="type2">
+          </p>
+          <p style="background-color:tomato;font-size:40px;font-family:apexFont" id="supportError"></p>
+        </form>
+        <div>
+          <img id="legend0Type"/>
+          <img id="legend1Type"/>
+          <img id="legend2Type"/>
+        </div>
+        <div>
+          <figure>
+      <img id="legend0" style="margin:10px">
+      <figcaption id="legend0Name"></figcaption>
+    </figure>
+    <figure>
+<img id="legend1" style="margin:10px">
+<figcaption id="legend1Name"></figcaption>
+</figure>
+<figure>
+<img id="legend2" style="margin:10px">
+<figcaption id="legend2Name"></figcaption>
+</figure>
+
+        </div>
+
+
+
+
+
+      </div>
+
+
+    <script type="text/javascript" src="Legend.js"></script>
+  </body>
+</html>
